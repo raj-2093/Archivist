@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Getting Started with Archivist [Library Management Project]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project intends to use React with Material Ui.
+
+## Standard practices to follow for branching and merging, if you wish to contribute
+1. Do fork the repo
+2. Do create a branch of yours based on `master` only.
+3. Do create a PR firstly to `dev` only.
+4. Do check for any issues(side effects) created by your PR
+5. Finally do PR to master.
+ 
 
 ## Available Scripts
 

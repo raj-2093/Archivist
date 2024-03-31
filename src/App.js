@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { 
+  BrowserRouter as Router,
+  Route,
+  Routes
+} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Explore from "./pages/Explore";
+import Clubs from "./pages/Clubs";
+import About from "./pages/About";
+import { useState } from "react";
+import { ThemeProvider } from "@emotion/react";
+import { lightTheme, darkTheme } from "./themes/base_theme";
+import { Button, CssBaseline } from "@mui/material";
 
 function App() {
+  const [theme, setTheme] = useState(darkTheme);
+  function switchTheme(){
+    theme==darkTheme ? setTheme(lightTheme) : setTheme(darkTheme) 
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+    <>
+    <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/Explore" element={<Explore/>}></Route>
+        <Route path="/Clubs" element={<Clubs/>}></Route>
+        <Route path="/About" element={<About/>}></Route>
+      </Routes>
+    </>
+    </ThemeProvider>
+    </Router>
   );
 }
 
