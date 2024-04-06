@@ -17,11 +17,16 @@ import MuiLink from '../themes/themed_components/ThemedLink';
 import ThemedLink from '../themes/themed_components/ThemedLink';
 import { LightMode } from '@mui/icons-material';
 import { Switch } from '@mui/material';
+import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
 
-const pages = ['Explore', 'Clubs', 'About'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout','Switch to dark mode'];
 
-function Navbar({isDarkMode, switchTheme}) {
+function Navbar({switchTheme,icon}) {
+
+  const pages = ['Explore', 'Clubs', 'About'];
+  
+  // const [toggleSettingText, setToggleSettingText] = React.useState('Switch to Light Mode')
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout', 'Switch to Light Mode'];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -58,7 +63,7 @@ function Navbar({isDarkMode, switchTheme}) {
               textDecoration: 'none',
             }}
           >
-            Archivist
+            Ac
           </Typography>
           </ThemedLink>
 
@@ -102,13 +107,11 @@ function Navbar({isDarkMode, switchTheme}) {
               ))}
             </Menu>
           </Box>
+          <ThemedLink>
           <Typography
             variant="h5"
             noWrap
-            href="#app-bar-with-responsive-menu"
             sx={{
-              mr: 'auto',
-              ml: 'auto',
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
               fontFamily: 'monospace',
@@ -118,8 +121,9 @@ function Navbar({isDarkMode, switchTheme}) {
               textDecoration: 'none',
             }}
           >
-            Archivist
+            Ac
           </Typography>
+          </ThemedLink>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap:"12px"}}>
             {pages.map((page) => (
               <ThemedLink
@@ -133,39 +137,13 @@ function Navbar({isDarkMode, switchTheme}) {
           </Box>
 
               
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => {
-                if(setting == 'Switch to dark mode'){
-                  return (<MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{`Hello, ${setting}`}</Typography>
-                  </MenuItem>)
-                }
-                  return (<MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>)
-                })}
-            </Menu>
+          <Box sx={{ display: 'flex', flexGrow: 0, alignItems: 'center', gap:'12px'}}>
+            <IconButton onClick={switchTheme} sx={{
+              color: 'white'
+            }}>
+                        {icon=='LightModeRounded' ? <LightModeRounded/> : <DarkModeRounded/>}
+            </IconButton>
+            <ThemedLink to={"/SignUp"}>SignUp</ThemedLink>
           </Box>
         </Toolbar>
       </Container>
