@@ -12,6 +12,12 @@ const darkTheme = createTheme({
   }  
 })
 
+// const baseTheme = createTheme({
+//   palette:{
+//     mode: toggleDarkMode? 'dark': 'light'
+//   }  
+// })
+
 export {
     lightTheme,darkTheme
 } 
