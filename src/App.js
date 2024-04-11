@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { 
+  BrowserRouter as Router,
+} from "react-router-dom";
+import { useContext, useState } from "react";
+import { ThemeProvider } from "@emotion/react";
+import { lightTheme, darkTheme, baseTheme } from "./themes/base_theme";
+import { Button, CssBaseline } from "@mui/material";
+import { DarkModeRounded, LightModeRounded } from "@mui/icons-material";
+import Routes from "./Routes";
+import ThemeToggleProvider, { ThemeContext } from "./contexts/ThemeToggleProvider";
 
 function App() {
+  const {theme} = useContext(ThemeContext)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+    <ThemeProvider theme={theme}>
+      <CssBaseline/>
+        <Routes/>
+    </ThemeProvider>
+      </Router>
   );
 }
 
