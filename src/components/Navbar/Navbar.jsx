@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import ThemedLink from "../NavLink/ThemedLink";
 import ToggleThemeButton from "../ToggleThemeButton/ToggleThemeButton";
+import logo from "../../assets/images/ARLogo.png";
 
 function Navbar({ home, pages }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -54,10 +55,7 @@ function Navbar({ home, pages }) {
                 verticalAlign: "middle",
               }}
             >
-              <img
-                src="http://localhost:5000/public/ARLogo.png"
-                width={"100%"}
-              />
+              <img src={logo} width={"100%"} />
             </Typography>
           </ThemedLink>
 
