@@ -1,0 +1,17 @@
+Components:
+    Navbar
+        Left NavItems
+            Brand Logo
+            NavLinks
+        Right NavItems
+            Theme Toggle Button
+            NavLinks
+    Form
+        Form header
+        Form body
+            Form Fields
+            Form Submit Button
+
+Pages:
+    Dashboard        
+    User
