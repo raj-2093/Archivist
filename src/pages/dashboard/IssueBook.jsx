@@ -11,22 +11,30 @@ import FormBody from "../../components/form/FormBody";
 import FormFields from "../../components/form/FormFields";
 import Avatar from "@mui/material/Avatar";
 import FormSubmit from "../../components/form/FormSubmit";
+import { bookIssuesApi } from "../../api/bookIssues";
 
 export default function IssueBook() {
   const [enrollmentNumber, setEnrollmentNumber] = useState("");
   const [bookId, setBookId] = useState("");
+  const [response, setResponse] = useState("");
 
   /**
    * This is handle method on submit
    * @param {Event} e
    */
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
-      enrollmentNumber,
-      bookId,
+      EnrollmentNumber: enrollmentNumber,
+      BookId: bookId,
     };
-    console.log(formData);
+    const res = await bookIssuesApi.issueBook(formData);
+    // console.log("bookIssuesApi : ", res.data);
+    try {
+      setResponse(res.data.message);
+    } catch (err) {
+      setResponse(res.response.data.message);
+    }
   };
   return (
     <Layout>
@@ -61,6 +69,7 @@ export default function IssueBook() {
                 Submit
               </Button>
             </FormSubmit>
+            {response && <div className="message">{response}</div>}
           </FormBody>
         </Form>
       </Paper>
