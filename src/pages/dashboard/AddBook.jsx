@@ -12,6 +12,7 @@ import FormFields from "../../components/form/FormFields";
 import FormSubmit from "../../components/form/FormSubmit";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
+import { bookApi } from "../../api/bookApi";
 
 export default function AddBook() {
   const fileInputRef = useRef(null);
@@ -24,14 +25,26 @@ export default function AddBook() {
    * This is handle method on submit
    * @param {Event} e
    */
-  const handleSubmit = (e) => {
-    const formData = {
-      bookCover,
-      bookName,
-      bookId,
-      BookAuthor,
-    };
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Old way, if there is no image file to send
+    // const res = await bookApi.addBook({
+    //   BookName: bookName,
+    //   BookId: bookId,
+    //   BookAuthor: BookAuthor,
+    // });
+    // console.log("Response : ", res);
+    // console.log("Response data : ", res.data);
+    // console.log("Response status : ", res.status);
+
+    // New way to send image file as well
+    const formData = new FormData();
+    formData.append("BookCover", bookCover);
+    formData.append("BookId", bookId);
+    formData.append("BookName", bookName);
+    formData.append("BookAuthor", BookAuthor);
+    console.log(formData.get("BookName"));
   };
 
   return (
@@ -62,6 +75,9 @@ export default function AddBook() {
                 sx={{
                   display: "none",
                 }}
+                onChange={(e) => {
+                  setBookCover(e.target.files[0]);
+                }}
               />
               <Button
                 onClick={(e) => {
@@ -87,14 +103,13 @@ export default function AddBook() {
               />
               <TextField
                 label="Book author"
-                required
                 fullWidth
                 onChange={(e) => setBookAuthor(e.currentTarget.value)}
                 type="text"
               />
             </FormFields>
             <FormSubmit>
-              <Button variant="outlined" fullWidth>
+              <Button variant="outlined" fullWidth type="submit">
                 Submit
               </Button>
             </FormSubmit>
