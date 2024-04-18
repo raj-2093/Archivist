@@ -14,12 +14,10 @@ import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
 import { bookApi } from "../../api/bookApi";
 
-export default function AddBook() {
+export default function DeleteBook() {
   const fileInputRef = useRef(null);
-  const [bookCover, setBookCover] = useState("");
   const [bookName, setBookName] = useState("");
   const [bookId, setBookId] = useState("");
-  const [BookAuthor, setBookAuthor] = useState("");
   const [response, setResponse] = useState("");
 
   /**
@@ -29,13 +27,9 @@ export default function AddBook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await bookApi.addBook({
-      BookName: bookName,
-      BookId: bookId,
-      BookAuthor: BookAuthor,
-    });
+    const res = await bookApi.deleteBook(Number(bookId));
     console.log("Response : ", res);
-    console.log("Response data : ", res.data);
+    // console.log("Response data : ", res.data);
     console.log("Response status : ", res.status);
     setResponse(res.data.message);
   };
@@ -50,7 +44,7 @@ export default function AddBook() {
         }}
       >
         <Form handleSubmit={handleSubmit}>
-          <FormHeader label={"Add Book"} />
+          <FormHeader label={"Delete Book"} />
           <FormBody>
             <FormFields>
               <TextField
@@ -65,18 +59,17 @@ export default function AddBook() {
                 required
                 fullWidth
                 onChange={(e) => setBookId(e.currentTarget.value)}
-                type="text"
-              />
-              <TextField
-                label="Book author"
-                fullWidth
-                onChange={(e) => setBookAuthor(e.currentTarget.value)}
-                type="text"
+                type="number"
               />
             </FormFields>
             <FormSubmit>
-              <Button variant="outlined" fullWidth type="submit">
-                Submit
+              <Button
+                variant="outlined"
+                fullWidth
+                type="submit"
+                color={"warning"}
+              >
+                Delete
               </Button>
             </FormSubmit>
             {response && <div className="message">{response}</div>}
