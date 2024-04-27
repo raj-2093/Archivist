@@ -3,8 +3,6 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Layout from "./Layout";
-import { bookApi } from "../../api/bookApi";
-import BookTable from "../../components/BookDataTable/BookTable";
 
 export default function DashBoardHome() {
   return (
@@ -38,7 +36,6 @@ export default function DashBoardHome() {
         elevation={5}
       >
         <h2>Books</h2>
-        <BookTable />
       </Paper>
     </Layout>
   );
