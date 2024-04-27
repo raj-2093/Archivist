@@ -20,6 +20,7 @@ export default function AddBook() {
   const [bookName, setBookName] = useState("");
   const [bookId, setBookId] = useState("");
   const [BookAuthor, setBookAuthor] = useState("");
+  const [response, setResponse] = useState("");
 
   /**
    * This is handle method on submit
@@ -28,23 +29,15 @@ export default function AddBook() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Old way, if there is no image file to send
-    // const res = await bookApi.addBook({
-    //   BookName: bookName,
-    //   BookId: bookId,
-    //   BookAuthor: BookAuthor,
-    // });
-    // console.log("Response : ", res);
-    // console.log("Response data : ", res.data);
-    // console.log("Response status : ", res.status);
-
-    // New way to send image file as well
-    const formData = new FormData();
-    formData.append("BookCover", bookCover);
-    formData.append("BookId", bookId);
-    formData.append("BookName", bookName);
-    formData.append("BookAuthor", BookAuthor);
-    console.log(formData.get("BookName"));
+    const res = await bookApi.addBook({
+      BookName: bookName,
+      BookId: bookId,
+      BookAuthor: BookAuthor,
+    });
+    console.log("Response : ", res);
+    console.log("Response data : ", res.data);
+    console.log("Response status : ", res.status);
+    setResponse(res.data.message);
   };
 
   return (
@@ -60,33 +53,6 @@ export default function AddBook() {
           <FormHeader label={"Add Book"} />
           <FormBody>
             <FormFields>
-              <Avatar
-                alt="img-upload"
-                variant="square"
-                sx={{
-                  width: "100px",
-                  height: "150px",
-                }}
-              ></Avatar>
-              <Box
-                component={"input"}
-                type="file"
-                ref={fileInputRef}
-                sx={{
-                  display: "none",
-                }}
-                onChange={(e) => {
-                  setBookCover(e.target.files[0]);
-                }}
-              />
-              <Button
-                onClick={(e) => {
-                  fileInputRef.current.click();
-                }}
-              >
-                Upload
-              </Button>
-
               <TextField
                 label="Book Name"
                 required
@@ -113,6 +79,7 @@ export default function AddBook() {
                 Submit
               </Button>
             </FormSubmit>
+            {response && <div className="message">{response}</div>}
           </FormBody>
         </Form>
       </Paper>

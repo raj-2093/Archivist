@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import axios from "axios";
 import Layout from "./Layout";
-import Paper from "@mui/material/Paper";
 import Form from "../../components/form/Form";
 import FormHeader from "../../components/form/FormHeader";
 import FormBody from "../../components/form/FormBody";
 import FormFields from "../../components/form/FormFields";
-import Avatar from "@mui/material/Avatar";
 import FormSubmit from "../../components/form/FormSubmit";
-import { bookIssuesApi } from "../../api/bookIssues";
+import Paper from "@mui/material/Paper";
+import Avatar from "@mui/material/Avatar";
+import { bookApi } from "../../api/bookApi";
 
-export default function IssueBook() {
-  const [enrollmentNumber, setEnrollmentNumber] = useState("");
+export default function DeleteBook() {
+  const fileInputRef = useRef(null);
+  const [bookName, setBookName] = useState("");
   const [bookId, setBookId] = useState("");
   const [response, setResponse] = useState("");
 
@@ -24,18 +26,14 @@ export default function IssueBook() {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      EnrollmentNumber: enrollmentNumber,
-      BookId: bookId,
-    };
-    const res = await bookIssuesApi.issueBook(formData);
-    // console.log("bookIssuesApi : ", res.data);
-    try {
-      setResponse(res.data.message);
-    } catch (err) {
-      setResponse(res.response.data.message);
-    }
+
+    const res = await bookApi.deleteBook(Number(bookId));
+    console.log("Response : ", res);
+    // console.log("Response data : ", res.data);
+    console.log("Response status : ", res.status);
+    setResponse(res.data.message);
   };
+
   return (
     <Layout>
       <Paper
@@ -46,14 +44,14 @@ export default function IssueBook() {
         }}
       >
         <Form handleSubmit={handleSubmit}>
-          <FormHeader label={"Issue Book"} />
+          <FormHeader label={"Delete Book"} />
           <FormBody>
             <FormFields>
               <TextField
-                label="Enrollment Number"
+                label="Book Name"
                 required
                 fullWidth
-                onChange={(e) => setEnrollmentNumber(e.currentTarget.value)}
+                onChange={(e) => setBookName(e.currentTarget.value)}
                 type="text"
               />
               <TextField
@@ -61,12 +59,17 @@ export default function IssueBook() {
                 required
                 fullWidth
                 onChange={(e) => setBookId(e.currentTarget.value)}
-                type="text"
+                type="number"
               />
             </FormFields>
             <FormSubmit>
-              <Button variant="outlined" fullWidth type="submit">
-                Submit
+              <Button
+                variant="outlined"
+                fullWidth
+                type="submit"
+                color={"warning"}
+              >
+                Delete
               </Button>
             </FormSubmit>
             {response && <div className="message">{response}</div>}

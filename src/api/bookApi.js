@@ -10,14 +10,10 @@ export const bookApi = {
    */
   addBook: async (bookData) => {
     try {
-      const res = await axios.post(`${base_url}/api/book`, bookData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const res = await axios.post(`${base_url}/api/book`, bookData);
       return res;
     } catch (err) {
-      throw err;
+      console.log("Add Book error : ", err);
     }
   },
 
@@ -27,10 +23,19 @@ export const bookApi = {
    */
   deleteBook: async (bookId) => {
     try {
-      const res = await axios.delete(`${base_url}/${bookId}`);
+      const res = await axios.delete(`${base_url}/api/book/${bookId}`);
       return res;
     } catch (err) {
-      throw err;
+      console.log("Delete Book error : ", err);
+    }
+  },
+
+  getAllBooks: async () => {
+    try {
+      const res = await axios.get(`${base_url}/api/book`);
+      return res;
+    } catch (err) {
+      console.log("Get all books : ", err);
     }
   },
 };
