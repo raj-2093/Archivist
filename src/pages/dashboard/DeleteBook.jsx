@@ -12,7 +12,7 @@ import FormFields from "../../components/form/FormFields";
 import FormSubmit from "../../components/form/FormSubmit";
 import Paper from "@mui/material/Paper";
 import Avatar from "@mui/material/Avatar";
-import { bookApi } from "../../api/bookApi";
+import { bookApi } from "../../services/book";
 
 export default function DeleteBook() {
   const fileInputRef = useRef(null);

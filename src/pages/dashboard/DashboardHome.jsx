@@ -3,6 +3,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Layout from "./Layout";
+import Table from "../../components/DataPresentations/Table/Table";
 
 export default function DashBoardHome() {
   return (

@@ -11,7 +11,7 @@ import FormBody from "../../components/form/FormBody";
 import FormFields from "../../components/form/FormFields";
 import Avatar from "@mui/material/Avatar";
 import FormSubmit from "../../components/form/FormSubmit";
-import { bookIssuesApi } from "../../api/bookIssues";
+import { bookIssuesApi } from "../../services/bookIssues";
 
 export default function IssueBook() {
   const [enrollmentNumber, setEnrollmentNumber] = useState("");

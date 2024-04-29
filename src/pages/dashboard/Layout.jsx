@@ -21,6 +21,8 @@ export default function Layout({ children }) {
           new Pages("Issue a Book", "/dashboard/IssueBook"),
           new Pages("Return book", "/dashboard/ReturnBook"),
           new Pages("Delete book", "/dashboard/DeleteBook"),
+          new Pages("Books", "/dashboard/Books"),
+          new Pages("Issues", "/dashboard/Issues"),
         ]}
       />
       {children}

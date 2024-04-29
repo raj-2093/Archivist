@@ -10,6 +10,8 @@ import BooksByCategory from "./pages/userPages/BooksByCategory";
 import About from "./pages/userPages/About";
 import Explore from "./pages/userPages/Explore";
 import DeleteBook from "./pages/dashboard/DeleteBook";
+import Books from "./pages/dashboard/Books";
+import Issues from "./pages/dashboard/Issues";
 
 export default function Routes() {
   const element = useRoutes([
@@ -31,6 +33,8 @@ export default function Routes() {
         { path: "IssueBook", element: <IssueBook /> },
         { path: "ReturnBook", element: <ReturnBook /> },
         { path: "DeleteBook", element: <DeleteBook /> },
+        { path: "Books", element: <Books /> },
+        { path: "Issues", element: <Issues /> },
       ],
     },
   ]);
