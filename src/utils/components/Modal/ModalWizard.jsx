@@ -10,19 +10,18 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 1000,
+  minWidth: "500px",
   bgcolor: "background.paper",
   borderRadius: "10px",
   boxShadow: 24,
-  p: 4,
 };
 
 export default function ModalWizard({
   children,
   modalShowState,
-  setAddBookModalShowState,
+  setModalShowState,
 }) {
-  const handleClose = () => setAddBookModalShowState(false);
+  const handleClose = () => setModalShowState(false);
 
   return (
     <div>

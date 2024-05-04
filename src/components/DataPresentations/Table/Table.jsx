@@ -35,7 +35,7 @@ const rows = [
   { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
 ];
 
-export default function Table({ columns, rows }) {
+export default function Table({ columns, rows, id }) {
   return (
     <div style={{ height: 400, width: "100%" }}>
       <DataGrid
@@ -45,6 +45,9 @@ export default function Table({ columns, rows }) {
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },
           },
+        }}
+        getRowId={(row) => {
+          return row[id];
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection

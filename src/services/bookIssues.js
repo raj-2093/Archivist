@@ -43,6 +43,15 @@ export class BookIssueServices {
     this.base_url = `${process.env.REACT_APP_API_BASE_URL}/api/bookIssues`;
   }
 
+  async getAllIssues() {
+    try {
+      const res = await axios.get(`${this.base_url}`);
+      return res;
+    } catch (err) {
+      throw err;
+    }
+  }
+
   /**
    * Issue a book
    * @param {{
@@ -58,7 +67,7 @@ export class BookIssueServices {
       return res;
     } catch (err) {
       console.log("Issue book error : ", err);
-      return err;
+      throw err;
     }
   }
 
@@ -72,10 +81,13 @@ export class BookIssueServices {
    */
   async returnBook(returnData) {
     try {
-      const res = await axios.delete(`${base_url}/api/bookIssues`, returnData);
+      const res = await axios.delete(`${base_url}/api/bookIssues`, {
+        data: returnData,
+      });
       return res;
     } catch (err) {
       console.log("Return book error : ", err);
+      throw err;
     }
   }
 }

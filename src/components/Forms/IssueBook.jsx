@@ -1,21 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import axios from "axios";
-import Paper from "@mui/material/Paper";
-import Avatar from "@mui/material/Avatar";
+import { bookIssuesApi } from "../../services/bookIssues";
 import Form from "../../utils/components/form/Form";
 import FormHeader from "../../utils/components/form/FormHeader";
 import FormBody from "../../utils/components/form/FormBody";
 import FormFields from "../../utils/components/form/FormFields";
 import FormSubmit from "../../utils/components/form/FormSubmit";
 
-export default function AddBook({ bookService }) {
-  const [bookName, setBookName] = useState("");
+export default function IssueBook({ services }) {
+  const [enrollmentNumber, setEnrollmentNumber] = useState("");
   const [bookId, setBookId] = useState("");
-  const [BookAuthor, setBookAuthor] = useState("");
   const [response, setResponse] = useState("");
 
   /**
@@ -24,33 +19,28 @@ export default function AddBook({ bookService }) {
    */
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const formData = {
+      EnrollmentNumber: enrollmentNumber,
+      BookId: bookId,
+    };
+    // const res = await bookIssuesApi.issueBook(formData);
     try {
-      const res = await bookService.addBook({
-        BookName: bookName,
-        BookId: bookId,
-        BookAuthor: BookAuthor,
-      });
-      console.log("Response : ", res);
-      console.log("Response data : ", res.data);
-      console.log("Response status : ", res.status);
+      const res = await services.issueBook(formData);
       setResponse(res.data.message);
     } catch (err) {
-      console.log("Add Book -- ", err);
       setResponse(err.response.data.message);
     }
   };
-
   return (
     <Form handleSubmit={handleSubmit}>
-      <FormHeader label={"Add Book"} />
+      <FormHeader label={"Issue Book"} />
       <FormBody>
         <FormFields>
           <TextField
-            label="Book Name"
+            label="Enrollment Number"
             required
             fullWidth
-            onChange={(e) => setBookName(e.currentTarget.value)}
+            onChange={(e) => setEnrollmentNumber(e.currentTarget.value)}
             type="text"
           />
           <TextField
@@ -58,12 +48,6 @@ export default function AddBook({ bookService }) {
             required
             fullWidth
             onChange={(e) => setBookId(e.currentTarget.value)}
-            type="text"
-          />
-          <TextField
-            label="Book author"
-            fullWidth
-            onChange={(e) => setBookAuthor(e.currentTarget.value)}
             type="text"
           />
         </FormFields>

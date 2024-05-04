@@ -17,10 +17,10 @@ export default function Layout({ children }) {
       <Navbar
         home={"/dashboard"}
         pages={[
-          new Pages("Add a Book", "/dashboard/AddBook"),
-          new Pages("Issue a Book", "/dashboard/IssueBook"),
-          new Pages("Return book", "/dashboard/ReturnBook"),
-          new Pages("Delete book", "/dashboard/DeleteBook"),
+          // new Pages("Add a Book", "/dashboard/AddBook"),
+          // new Pages("Issue a Book", "/dashboard/IssueBook"),
+          // new Pages("Return book", "/dashboard/ReturnBook"),
+          // new Pages("Delete book", "/dashboard/DeleteBook"),
           new Pages("Books", "/dashboard/Books"),
           new Pages("Issues", "/dashboard/Issues"),
         ]}

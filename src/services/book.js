@@ -98,6 +98,8 @@ export class BookServices {
   async getBook(bookId) {
     try {
       const res = await axios.get(`${this.base_url}/${bookId}`);
-    } catch (err) {}
+    } catch (err) {
+      throw err;
+    }
   }
 }
