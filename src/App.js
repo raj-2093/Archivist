@@ -10,10 +10,10 @@ import ThemeToggleProvider, {
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  // Added Comment
+  // Added Comment using different account
   return (
     <Router>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes />
       </ThemeProvider>
