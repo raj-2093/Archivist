@@ -93,18 +93,23 @@ export default function Books() {
 
   useEffect(() => {
     try {
-      bookServices.getAllBooks().then((res) => {
-        console.log("Response : ", res);
-        console.log("Response data : ", res.data.data);
-        // const rows = extractRows(res.data.data, {
-        //   id: "BookId",
-        //   BookName: "BookName",
-        //   BookAuthor: "BookAuthor",
-        // });
-        const rows = res.data.data;
-        console.log("Rows : ", rows[0]);
-        setRows(rows);
-      });
+      bookServices
+        .getAllBooks()
+        .then((res) => {
+          console.log("Response : ", res);
+          console.log("Response data : ", res.data.data);
+          // const rows = extractRows(res.data.data, {
+          //   id: "BookId",
+          //   BookName: "BookName",
+          //   BookAuthor: "BookAuthor",
+          // });
+          const rows = res.data.data;
+          console.log("Rows : ", rows[0]);
+          setRows(rows);
+        })
+        .catch((err) => {
+          console.log("getAllbooks call err -- ", err);
+        });
     } catch (err) {
       console.log("Get book err -- ", err);
     }

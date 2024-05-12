@@ -13,7 +13,7 @@ function App() {
   // Added Comment
   return (
     <Router>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Routes />
       </ThemeProvider>
