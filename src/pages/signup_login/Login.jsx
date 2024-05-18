@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Form from "../../components/form/Form";
-import FormHeader from "../../components/form/FormHeader";
-import FormBody from "../../components/form/FormBody";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Layout from "./Layout";
-import FormFields from "../../components/form/FormFields";
-import FormSubmit from "../../components/form/FormSubmit";
+import Form from "../../utils/components/form/Form";
+import FormHeader from "../../utils/components/form/FormHeader";
+import FormBody from "../../utils/components/form/FormBody";
+import FormFields from "../../utils/components/form/FormFields";
+import FormSubmit from "../../utils/components/form/FormSubmit";
 
 export default function Login() {
   const [email, setEmail] = useState("");

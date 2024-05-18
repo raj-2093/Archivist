@@ -10,6 +10,9 @@ import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import ThemedLink from "../NavLink/ThemedLink";
 import ToggleThemeButton from "../ToggleThemeButton/ToggleThemeButton";
+import { useTheme } from "@mui/material";
+import Navlink from "./Navlink";
+import BrandLogo from "./BrandLogo";
 
 function Navbar({ home, pages }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -34,100 +37,9 @@ function Navbar({ home, pages }) {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <ThemedLink
-            to={home}
-            sx={{
-              width: "60px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              noWrap
-              sx={{
-                display: "flex",
-                mr: 3,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-                verticalAlign: "middle",
-              }}
-            >
-              <img
-                src="http://localhost:5000/public/ARLogo.png"
-                width={"100%"}
-              />
-            </Typography>
-          </ThemedLink>
+          <BrandLogo home={home} />
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.label} onClick={handleCloseNavMenu}>
-                  <ThemedLink to={page.path}>
-                    <Typography textAlign="center" color={"black"}>
-                      {page.label}
-                    </Typography>
-                  </ThemedLink>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: "none", md: "flex" },
-              gap: "25px",
-            }}
-          >
-            {pages.map((page) => (
-              <ThemedLink
-                style={({ isActive }) => {
-                  if (isActive) {
-                    return {
-                      textShadow: "0 0 10px white",
-                    };
-                  } else {
-                    return {};
-                  }
-                }}
-                key={page.label}
-                onClick={handleCloseNavMenu}
-                to={page.path}
-              >
-                {page.label}
-              </ThemedLink>
-            ))}
-          </Box>
+          <Navlink pages={pages} />
 
           <Box
             sx={{

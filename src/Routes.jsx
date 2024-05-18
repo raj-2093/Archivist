@@ -1,14 +1,13 @@
 import React from "react";
 import { useRoutes } from "react-router-dom";
 import DashBoardHome from "./pages/dashboard/DashboardHome";
-import AddBook from "./pages/dashboard/AddBook";
-import IssueBook from "./pages/dashboard/IssueBook";
-import ReturnBook from "./pages/dashboard/ReturnBook";
 import Login from "./pages/signup_login/Login";
 import Home from "./pages/userPages/Home";
 import BooksByCategory from "./pages/userPages/BooksByCategory";
 import About from "./pages/userPages/About";
 import Explore from "./pages/userPages/Explore";
+import Books from "./pages/dashboard/Books";
+import Issues from "./pages/dashboard/Issues";
 
 export default function Routes() {
   const element = useRoutes([
@@ -26,9 +25,8 @@ export default function Routes() {
       path: "/dashboard",
       children: [
         { index: true, element: <DashBoardHome /> },
-        { path: "AddBook", element: <AddBook /> },
-        { path: "IssueBook", element: <IssueBook /> },
-        { path: "ReturnBook", element: <ReturnBook /> },
+        { path: "Books", element: <Books /> },
+        { path: "Issues", element: <Issues /> },
       ],
     },
   ]);
